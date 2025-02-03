@@ -13,20 +13,24 @@ const pool = new Pool({ connectionString });
 // Instantiates the Prisma adapter using the Neon connection pool to handle the connection between Prisma and Neon.
 const adapter = new PrismaNeon(pool);
 
+const globalForPrisma = global as unknown as { prisma?: PrismaClient };
+
 // Extends the PrismaClient with a custom result transformer to convert the price and rating fields to strings.
-export const prisma = new PrismaClient({ adapter }).$extends({
-  result: {
-    product: {
-      price: {
-        compute(product) {
-          return product.price.toString();
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({ adapter }).$extends({
+    result: {
+      product: {
+        price: {
+          compute(product) {
+            return product.price.toString();
+          },
         },
-      },
-      rating: {
-        compute(product) {
-          return product.rating.toString();
+        rating: {
+          compute(product) {
+            return product.rating.toString();
+          },
         },
       },
     },
-  },
-});
+  });
