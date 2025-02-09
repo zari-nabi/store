@@ -18,3 +18,11 @@ export const signUpDefaultValues = {
   password: "",
   confirmPassword: "",
 };
+
+export const shippingAddressDefaultValues = {
+  fullName: "Zara Nabi",
+  streetAddress: "123 Main St",
+  city: "Vienna",
+  postalCode: "12345",
+  country: "Austria",
+};
