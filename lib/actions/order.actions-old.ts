@@ -1,14 +1,14 @@
 "use server";
 
-import { isRedirectError } from "next/dist/client/components/redirect";
 import { formatError } from "../utils";
 import { auth } from "@/auth";
 import { getMyCart } from "./cart.actions";
 import { getUserById } from "./user.actions";
-import { redirect } from "next/navigation";
-import { insertOrderSchema } from "../validators";
-import { prisma } from "@/db/prisma";
+// import { prisma } from "@/db/prisma";
 import { CartItem } from "@/types";
+import { insertOrderSchema } from "../validator";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { PrismaClient } from "@prisma/client";
 
 // Create an order
 export async function createOrder() {
@@ -54,6 +54,7 @@ export async function createOrder() {
       totalPrice: cart.totalPrice,
     });
 
+    const prisma = new PrismaClient();
     const insertedOrderId = await prisma.$transaction(async (tx) => {
       const insertedOrder = await tx.order.create({ data: order });
       for (const item of cart.items as CartItem[]) {
