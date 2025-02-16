@@ -1,0 +1,11 @@
+{
+    "extends": ["next/core-web-vitals", "next/typescript"],
+    "overrides": [
+      {
+        "files": ["path/to/your/file.ts", "path/to/another/file.tsx"],
+        "rules": {
+          "@typescript-eslint/no-unused-vars": "off"
+        }
+      }
+    ]
+  }
