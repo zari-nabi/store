@@ -11,7 +11,6 @@ import { shippingAddressDefaultValues } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 import { useTransition } from "react";
 import { updateUserAddress } from "@/lib/actions/user.actions";
-// import CheckoutSteps from "@/components/shared/checkout-steps";
 import {
   Form,
   FormControl,
@@ -23,7 +22,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader } from "lucide-react";
-import CheckoutSteps from "@/components/shared/checkout-steps";
 
 const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
   const router = useRouter();
@@ -53,7 +51,6 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
 
   return (
     <>
-      <CheckoutSteps current={1} />
       <div className="max-w-md mx-auto space-y-4">
         <h1 className="h2-bold mt-4">Shipping Address</h1>
         <p className="text-sm text-muted-foreground">

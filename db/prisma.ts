@@ -32,5 +32,27 @@ export const prisma =
           },
         },
       },
+      order: {
+        itemsPrice: {
+          compute(order) {
+            return order.itemsPrice.toString();
+          },
+        },
+        shippingPrice: {
+          compute(order) {
+            return order.shippingPrice.toString();
+          },
+        },
+        taxPrice: {
+          compute(order) {
+            return order.taxPrice.toString();
+          },
+        },
+        totalPrice: {
+          compute(order) {
+            return order.totalPrice.toString();
+          },
+        },
+      },
     },
   });
